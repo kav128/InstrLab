@@ -48,5 +48,31 @@ namespace Lab1
         public static bool Contains(TreeNode node, int value) =>
             node.Value == value
             || node.Next.Select(cur => Contains(cur, value)).Contains(true);
+
+        /// <summary>
+        /// Возвращает минимальное значение в текущем узле и всех его подузлах
+        /// </summary>
+        /// <param name="node">Узел, с которого начать обход</param>
+        /// <returns>Минимальное значение в узле и подузлах</returns>
+        public static int FindMinValue(TreeNode node)
+        {
+            if (node.Next.Count() == 0)
+                return node.Value;
+            int minChild = node.Next.Min((cur) => FindMinValue(cur));
+            return Math.Min(node.Value, minChild);
+        }
+
+        /// <summary>
+        /// Возвращает максимальное значение в текущем узле и всех его подузлах
+        /// </summary>
+        /// <param name="node">Узел, с которого начать обход</param>
+        /// <returns>Максимальное значение в узле и подузлах</returns>
+        public static int FindMaxValue(TreeNode node)
+        {
+            if (node.Next.Count() == 0)
+                return node.Value;
+            int maxChild = node.Next.Max((cur) => FindMaxValue(cur));
+            return Math.Max(node.Value, maxChild);
+        }
     }
 }
