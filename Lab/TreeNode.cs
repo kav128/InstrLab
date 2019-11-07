@@ -51,6 +51,12 @@ namespace Lab1
         public static TreeNode FromJson(string json) => JsonConvert.DeserializeObject<TreeNode>(json);
 
         /// <summary>
+        /// Сериализует узел в JSON
+        /// </summary>
+        /// <returns>Сериализованный объект JSON</returns>
+        public string ToJson() => JsonConvert.SerializeObject(this);
+
+        /// <summary>
         /// Десериализует узел из файла JSON
         /// </summary>
         /// <param name="jsonFile">Имя файла JSON</param>
@@ -61,6 +67,19 @@ namespace Lab1
             {
                 string json = sr.ReadToEnd();
                 return FromJson(json);
+            }
+        }
+
+        /// <summary>
+        /// Сериализует узел в файл JSON
+        /// </summary>
+        /// <param name="jsonFile">Имя файла JSON</param>
+        public void SaveJson(string jsonFile)
+        {
+            using (StreamWriter sw = new StreamWriter(jsonFile))
+            {
+                string json = ToJson();
+                sw.WriteLine(json);
             }
         }
     }
