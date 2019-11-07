@@ -1,0 +1,48 @@
+﻿{
+  "Value": 15,
+  "Next": [
+    {
+      "Value": 9,
+      "Next": []
+    },
+    {
+      "Value": 4,
+      "Next": [
+        {
+          "Value": 16,
+          "Next": []
+        },
+        {
+          "Value": 62,
+          "Next": []
+        },
+        {
+          "Value": 25,
+          "Next": []
+        }
+      ]
+    },
+    {
+      "Value": 5,
+      "Next": [
+        {
+          "Value": 1,
+          "Next": []
+        }
+      ]
+    },
+    {
+      "Value": 3,
+      "Next": [
+        {
+          "Value": 18,
+          "Next": []
+        },
+        {
+          "Value": 8,
+          "Next": []
+        }
+      ]
+    }
+  ]
+}
