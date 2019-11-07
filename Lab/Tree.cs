@@ -19,5 +19,11 @@
         /// </summary>
         /// <param name="json">JSON представление коневого узла</param>
         public Tree(string json) => Root = TreeNode.FromJson(json);
+
+        /// <summary>
+        /// Сериализует дерево в файл JSON
+        /// </summary>
+        /// <param name="jsonFile">Имя файла JSON</param>
+        public void SaveJson(string jsonFile) => Root.SaveJson(jsonFile);
     }
 }
