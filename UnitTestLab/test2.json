@@ -1,0 +1,35 @@
+﻿{
+  "Value": 15,
+  "Next": [
+    {
+      "Value": 9,
+      "Next": [
+        {
+          "Value": 87,
+          "Next": []
+        },
+        {
+          "Value": 14,
+          "Next": []
+        }
+      ]
+    },
+    {
+      "Value": 4,
+      "Next": [
+        {
+          "Value": 16,
+          "Next": []
+        },
+        {
+          "Value": 174,
+          "Next": []
+        },
+        {
+          "Value": 27,
+          "Next": []
+        }
+      ]
+    }
+  ]
+}
