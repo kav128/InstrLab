@@ -9,5 +9,8 @@
     <DocumentationFile>C:\Users\kav128\Documents\Учеба\5 семестр\Инструментальные средства\Lab1\Lab\Lab1.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
 
 </Project>

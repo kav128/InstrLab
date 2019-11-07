@@ -1,3 +1,4 @@
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
@@ -40,6 +41,27 @@ namespace Lab1
             TreeNode node = new TreeNode(value);
             nextNodes.Add(node);
             return node;
+        }
+
+        /// <summary>
+        /// Десериализует узел из JSON
+        /// </summary>
+        /// <param name="json">JSON представление узла</param>
+        /// <returns>Десериализованный узел</returns>
+        public static TreeNode FromJson(string json) => JsonConvert.DeserializeObject<TreeNode>(json);
+
+        /// <summary>
+        /// Десериализует узел из файла JSON
+        /// </summary>
+        /// <param name="jsonFile">Имя файла JSON</param>
+        /// <returns>Десериализованный узел</returns>
+        public static TreeNode FromJsonFile(string jsonFile)
+        {
+            using (StreamReader sr = new StreamReader(jsonFile))
+            {
+                string json = sr.ReadToEnd();
+                return FromJson(json);
+            }
         }
     }
 }
