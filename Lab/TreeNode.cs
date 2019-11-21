@@ -1,24 +1,26 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Lab1
 {
     /// <summary>
     /// Представляет узел дерева
     /// </summary>
+    [XmlRoot(ElementName = "Node")]
     public class TreeNode
     {
-        private readonly List<TreeNode> nextNodes;
-
         /// <summary>
         /// Последовательность дочерних узлов
         /// </summary>
-        public IEnumerable<TreeNode> Next => nextNodes;
+        [XmlArrayItem(ElementName = "Node")]
+        public List<TreeNode> Next { get; set; }
 
         /// <summary>
         /// Получает или задает числовое значение текущего узла
         /// </summary>
+        [XmlAttribute]
         public int Value { get; set; }
 
         /// <summary>
@@ -27,8 +29,18 @@ namespace Lab1
         /// <param name="value">Числовое значение узла</param>
         public TreeNode(int value)
         {
-            nextNodes = new List<TreeNode>();
+            Next = new List<TreeNode>();
             Value = value;
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="TreeNode"/>
+        /// </summary>
+        /// <param name="value">Числовое значение узла</param>
+        public TreeNode()
+        {
+            Next = new List<TreeNode>();
+            Value = 0;
         }
 
         /// <summary>
@@ -39,7 +51,7 @@ namespace Lab1
         public TreeNode CreateNext(int value)
         {
             TreeNode node = new TreeNode(value);
-            nextNodes.Add(node);
+            Next.Add(node);
             return node;
         }
 
