@@ -29,6 +29,11 @@ namespace Lab1
         public Tree(string json) => Root = TreeNode.FromJson(json);
 
         /// <summary>
+        /// Очищает дерево и записывает нуль в корневой элемент
+        /// </summary>
+        public void Clear() => Root = new TreeNode();
+
+        /// <summary>
         /// Сериализует дерево в файл JSON
         /// </summary>
         /// <param name="jsonFile">Имя файла JSON</param>

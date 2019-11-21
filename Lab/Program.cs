@@ -17,6 +17,8 @@ namespace Lab1
             Console.WriteLine(NodeCalculator.FindMinValue(tree.Root));
 
             tree.SaveXml("tree1.xml");
+            tree.Clear();
+            tree.SaveXml("tree2.xml");
         }
     }
 }
