@@ -1,24 +1,26 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Lab1
 {
     /// <summary>
     /// Представляет узел дерева
     /// </summary>
+    [XmlRoot(ElementName = "Node")]
     public class TreeNode
     {
-        private readonly List<TreeNode> nextNodes;
-
         /// <summary>
         /// Последовательность дочерних узлов
         /// </summary>
-        public IEnumerable<TreeNode> Next => nextNodes;
+        [XmlArrayItem(ElementName = "Node")]
+        public List<TreeNode> Next { get; set; }
 
         /// <summary>
         /// Получает или задает числовое значение текущего узла
         /// </summary>
+        [XmlAttribute]
         public int Value { get; set; }
 
         /// <summary>
@@ -27,8 +29,17 @@ namespace Lab1
         /// <param name="value">Числовое значение узла</param>
         public TreeNode(int value)
         {
-            nextNodes = new List<TreeNode>();
+            Next = new List<TreeNode>();
             Value = value;
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="TreeNode"/>
+        /// </summary>
+        public TreeNode()
+        {
+            Next = new List<TreeNode>();
+            Value = 0;
         }
 
         /// <summary>
@@ -39,7 +50,7 @@ namespace Lab1
         public TreeNode CreateNext(int value)
         {
             TreeNode node = new TreeNode(value);
-            nextNodes.Add(node);
+            Next.Add(node);
             return node;
         }
 
@@ -63,11 +74,9 @@ namespace Lab1
         /// <returns>Десериализованный узел</returns>
         public static TreeNode FromJsonFile(string jsonFile)
         {
-            using (StreamReader sr = new StreamReader(jsonFile))
-            {
-                string json = sr.ReadToEnd();
-                return FromJson(json);
-            }
+            using StreamReader sr = new StreamReader(jsonFile);
+            string json = sr.ReadToEnd();
+            return FromJson(json);
         }
 
         /// <summary>
@@ -76,11 +85,20 @@ namespace Lab1
         /// <param name="jsonFile">Имя файла JSON</param>
         public void SaveJson(string jsonFile)
         {
-            using (StreamWriter sw = new StreamWriter(jsonFile))
-            {
-                string json = ToJson();
-                sw.WriteLine(json);
-            }
+            using StreamWriter sw = new StreamWriter(jsonFile);
+            string json = ToJson();
+            sw.WriteLine(json);
+        }
+
+        /// <summary>
+        /// Сериализует узел в файл XML
+        /// </summary>
+        /// <param name="xmlFile">Имя файла XML</param>
+        public void SaveXml(string xmlFile)
+        {
+            using Stream stream = new FileStream(xmlFile, FileMode.Create, FileAccess.Write, FileShare.None, 4096);
+            XmlSerializer serializer = new XmlSerializer(GetType());
+            serializer.Serialize(stream, this);
         }
     }
 }
