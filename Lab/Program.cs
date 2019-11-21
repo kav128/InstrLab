@@ -4,7 +4,7 @@ namespace Lab1
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Tree tree = new Tree();
             tree.LoadFromXML("tree.xml");

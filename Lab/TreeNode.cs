@@ -74,11 +74,9 @@ namespace Lab1
         /// <returns>Десериализованный узел</returns>
         public static TreeNode FromJsonFile(string jsonFile)
         {
-            using (StreamReader sr = new StreamReader(jsonFile))
-            {
-                string json = sr.ReadToEnd();
-                return FromJson(json);
-            }
+            using StreamReader sr = new StreamReader(jsonFile);
+            string json = sr.ReadToEnd();
+            return FromJson(json);
         }
 
         /// <summary>
@@ -87,11 +85,9 @@ namespace Lab1
         /// <param name="jsonFile">Имя файла JSON</param>
         public void SaveJson(string jsonFile)
         {
-            using (StreamWriter sw = new StreamWriter(jsonFile))
-            {
-                string json = ToJson();
-                sw.WriteLine(json);
-            }
+            using StreamWriter sw = new StreamWriter(jsonFile);
+            string json = ToJson();
+            sw.WriteLine(json);
         }
 
         /// <summary>
@@ -100,11 +96,9 @@ namespace Lab1
         /// <param name="xmlFile">Имя файла XML</param>
         public void SaveXml(string xmlFile)
         {
-            using (Stream stream = new FileStream(xmlFile, FileMode.Create, FileAccess.Write, FileShare.None, 4096))
-            {
-                XmlSerializer serializer = new XmlSerializer(GetType());
-                serializer.Serialize(stream, this);
-            }
+            using Stream stream = new FileStream(xmlFile, FileMode.Create, FileAccess.Write, FileShare.None, 4096);
+            XmlSerializer serializer = new XmlSerializer(GetType());
+            serializer.Serialize(stream, this);
         }
     }
 }

@@ -46,12 +46,10 @@ namespace Lab1
         /// <param name="xmlFile">Имя файла XML</param>
         public void LoadFromXML(string xmlFile)
         {
-            using (Stream stream = new FileStream(xmlFile, FileMode.Open, FileAccess.Read, FileShare.None, 4096))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(TreeNode));
-                TreeNode node = serializer.Deserialize(stream) as TreeNode;
-                Root = node;
-            }
+            using Stream stream = new FileStream(xmlFile, FileMode.Open, FileAccess.Read, FileShare.None, 4096);
+            XmlSerializer serializer = new XmlSerializer(typeof(TreeNode));
+            TreeNode node = serializer.Deserialize(stream) as TreeNode;
+            Root = node;
         }
     }
 }
