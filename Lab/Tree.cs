@@ -1,4 +1,7 @@
-﻿namespace Lab1
+﻿using System.IO;
+using System.Xml.Serialization;
+
+namespace Lab1
 {
     /// <summary>Представляет дерево</summary>
     public class Tree
@@ -6,13 +9,18 @@
         /// <summary>
         /// Возвращает корневой узел дерева
         /// </summary>
-        public TreeNode Root { get; }
+        public TreeNode Root { get; private set; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tree"/>
         /// </summary>
         /// <param name="rootValue">Значение крневого узла дерева</param>
         public Tree(int rootValue) => Root = new TreeNode(rootValue);
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tree"/>
+        /// </summary>
+        public Tree() => Root = new TreeNode();
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tree"/>
@@ -31,5 +39,19 @@
         /// </summary>
         /// <param name="xmlFile">Имя файла XML</param>
         public void SaveXml(string xmlFile) => Root.SaveXml(xmlFile);
+
+        /// <summary>
+        /// Загружает дерево из XML файла
+        /// </summary>
+        /// <param name="xmlFile">Имя файла XML</param>
+        public void LoadFromXML(string xmlFile)
+        {
+            using (Stream stream = new FileStream(xmlFile, FileMode.Open, FileAccess.Read, FileShare.None, 4096))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(TreeNode));
+                TreeNode node = serializer.Deserialize(stream) as TreeNode;
+                Root = node;
+            }
+        }
     }
 }

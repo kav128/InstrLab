@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace Lab1
 {
@@ -8,13 +6,8 @@ namespace Lab1
     {
         static void Main(string[] args)
         {
-            Tree tree;
-            string json;
-            using (StreamReader sr = new StreamReader("tree.json"))
-            {
-                json = sr.ReadToEnd();
-                tree = new Tree(json);
-            }
+            Tree tree = new Tree();
+            tree.LoadFromXML("tree.xml");
 
             Console.WriteLine(NodeCalculator.FindMaxPathSum(tree.Root));
 
@@ -23,7 +16,7 @@ namespace Lab1
             Console.WriteLine(NodeCalculator.FindMaxValue(tree.Root));
             Console.WriteLine(NodeCalculator.FindMinValue(tree.Root));
 
-            tree.SaveXml("tree.xml");
+            tree.SaveXml("tree1.xml");
         }
     }
 }
