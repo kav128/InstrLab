@@ -23,14 +23,7 @@ namespace Lab1
             Console.WriteLine(NodeCalculator.FindMaxValue(tree.Root));
             Console.WriteLine(NodeCalculator.FindMinValue(tree.Root));
 
-            using (TextWriter stream = new StringWriter())
-            {
-                XmlSerializer serializer = new XmlSerializer(tree.Root.GetType());
-                serializer.Serialize(stream, tree.Root);
-                Console.WriteLine(stream.ToString());
-            }
-
-            Console.WriteLine(tree.Root.Next.Count);
+            tree.SaveXml("tree.xml");
         }
     }
 }

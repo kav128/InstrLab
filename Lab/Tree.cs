@@ -25,5 +25,11 @@
         /// </summary>
         /// <param name="jsonFile">Имя файла JSON</param>
         public void SaveJson(string jsonFile) => Root.SaveJson(jsonFile);
+
+        /// <summary>
+        /// Сериализует дерево в файл XML
+        /// </summary>
+        /// <param name="xmlFile">Имя файла XML</param>
+        public void SaveXml(string xmlFile) => Root.SaveXml(xmlFile);
     }
 }

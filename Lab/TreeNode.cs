@@ -36,7 +36,6 @@ namespace Lab1
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="TreeNode"/>
         /// </summary>
-        /// <param name="value">Числовое значение узла</param>
         public TreeNode()
         {
             Next = new List<TreeNode>();
@@ -92,6 +91,19 @@ namespace Lab1
             {
                 string json = ToJson();
                 sw.WriteLine(json);
+            }
+        }
+
+        /// <summary>
+        /// Сериализует узел в файл XML
+        /// </summary>
+        /// <param name="xmlFile">Имя файла XML</param>
+        public void SaveXml(string xmlFile)
+        {
+            using (Stream stream = new FileStream(xmlFile, FileMode.Create, FileAccess.Write, FileShare.None, 4096))
+            {
+                XmlSerializer serializer = new XmlSerializer(GetType());
+                serializer.Serialize(stream, this);
             }
         }
     }
