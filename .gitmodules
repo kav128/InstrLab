@@ -1,0 +1,6 @@
+[submodule "todo"]
+	path = todo
+	url = git://github.com/kav128/TODO-List.git
+[submodule "latex"]
+	path = latex
+	url = git://github.com/kav128/LatexDocument
